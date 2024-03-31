@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface Data {
   session_id: string;
@@ -44,11 +45,13 @@ function ScannerPage() {
         ...prevData,
         meds: prevData.meds.filter((item) => item !== med),
       }));
+      toast.success("Medicine Removed!");
     } else {
       setData((prevData) => ({
         ...prevData,
         meds: [...prevData.meds, med],
       }));
+      toast.success("Medicine Added!");
     }
   };
 
@@ -62,6 +65,7 @@ function ScannerPage() {
     }));
     const jsonData = JSON.stringify(data);
     console.log(jsonData);
+    toast.info("Submitting Data...");
     return jsonData;
   };
 
