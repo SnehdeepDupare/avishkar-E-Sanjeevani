@@ -15,9 +15,9 @@ export default function Home() {
           />
         </div>
 
-        <Link href="/scanner">
+        <Link href="/buy">
           <button className="bg-blue-500 rounded-lg px-6 py-2 text-white ">
-            QR Code Scanner
+            Buy Medicines
           </button>
         </Link>
       </div>
