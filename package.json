@@ -10,14 +10,20 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.28.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
     "@react-pdf/renderer": "^3.1.14",
     "@types/qrcode": "^1.5.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "lucide-react": "^0.295.0",
     "next": "14.0.4",
     "qrcode": "^1.5.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-webcam": "^7.2.0"
+    "react-webcam": "^7.2.0",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
