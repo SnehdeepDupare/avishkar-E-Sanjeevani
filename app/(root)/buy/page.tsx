@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface Data {
   session_id: string;
@@ -11,7 +13,10 @@ interface Data {
   date: string;
 }
 
-function ScannerPage() {
+function BuyPage() {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const generateSessionId = (): string => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -64,8 +69,9 @@ function ScannerPage() {
       date: newDate,
     }));
     const jsonData = JSON.stringify(data);
-    console.log(jsonData);
+
     toast.info("Submitting Data...");
+
     return jsonData;
   };
 
@@ -103,15 +109,19 @@ function ScannerPage() {
 
         <Separator />
 
-        <Button
-          className="bg-blue-500 hover:bg-blue-400 self-end mt-5"
+        <Link
+          href={{
+            pathname: "/get-data",
+            query: JSON.stringify(data),
+          }}
           onClick={handleSubmit}
+          className="self-end mt-5"
         >
-          Proceed
-        </Button>
+          <Button className="bg-blue-500 hover:bg-blue-400">Proceed</Button>
+        </Link>
       </div>
     </section>
   );
 }
 
-export default ScannerPage;
+export default BuyPage;
