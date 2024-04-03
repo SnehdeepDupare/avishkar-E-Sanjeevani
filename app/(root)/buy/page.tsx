@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
@@ -70,10 +70,23 @@ function BuyPage() {
     }));
     const jsonData = JSON.stringify(data);
 
+    localStorage.setItem("jsonData", jsonData); // Store data in local storage
+    router.push("/get-data");
+
     toast.info("Submitting Data...");
 
     return jsonData;
   };
+
+  // Clear old data if a new request comes in
+  const clearOldData = () => {
+    localStorage.removeItem("jsonData");
+  };
+
+  // Call clearOldData when the component mounts
+  useEffect(() => {
+    clearOldData();
+  }, []);
 
   return (
     <section className="max-w-6xl mx-auto flex flex-col gap-4 mt-5 pb-24 px-5">
@@ -109,16 +122,12 @@ function BuyPage() {
 
         <Separator />
 
-        <Link
-          href={{
-            pathname: "/get-data",
-            query: JSON.stringify(data),
-          }}
+        <Button
+          className="bg-blue-500 hover:bg-blue-400 self-end mt-5"
           onClick={handleSubmit}
-          className="self-end mt-5"
         >
-          <Button className="bg-blue-500 hover:bg-blue-400">Proceed</Button>
-        </Link>
+          Proceed
+        </Button>
       </div>
     </section>
   );

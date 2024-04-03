@@ -1,8 +1,7 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 
 export default function GetDataPage() {
-  const params = useSearchParams();
+  const jsonData = localStorage.getItem("jsonData");
 
-  return <pre>{params}</pre>;
+  return <pre>{jsonData}</pre>;
 }
